@@ -1,5 +1,5 @@
 #include "../exercise.h"
-
+#include <bit>
 // READ: 枚举类型 <https://zh.cppreference.com/w/cpp/language/enum>
 
 // `enum` 是 C 的兼容类型，本质上其对应类型的常量。
@@ -16,7 +16,7 @@ enum ColorEnum : unsigned char {
 // 有作用域枚举型是 C++ 引入的类型安全枚举。
 // 其内部标识符需要带前缀引用，如 `Color::Red`。
 // 作用域枚举型可以避免命名空间污染，并提供类型安全保证。
-enum class Color : int {
+enum class Color : unsigned char {
     Red = COLOR_RED,
     Green,
     Yellow,
@@ -37,6 +37,8 @@ ColorEnum convert_by_pun(Color c) {
 
     TypePun pun;
     // TODO: 补全类型双关转换
+    // return std::bit_cast<ColorEnum, Color>(c);
+    pun.c = c;
 
     return pun.e;
 }
